@@ -32,6 +32,6 @@ week 7-8 (4/10-4/24)
 
 week 9 (4/25-4/30)
        
-       1. proint out the poster
+       1. print out the poster
        
        2. prepare for presentation
