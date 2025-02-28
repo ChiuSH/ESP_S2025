@@ -10,7 +10,7 @@ Week 1 (2/27-3/5)
        
        4. next meeting 3/6
        
-week 2 - 4 (3/6-3/26)
+week 2-4 (3/6-3/26)
 
        1. build the code for machine learning process
 
