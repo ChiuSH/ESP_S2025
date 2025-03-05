@@ -1,0 +1,140 @@
+Shrestha, P., Kandel, J., Tayara, H. et al. Post-translational modification prediction via prompt-based fine-tuning of a GPT-2 model. Nat Commun 15, 6699 (2024). https://doi.org/10.1038/s41467-024-51071-9
+
+
+
+notes:
+
+    PTM
+        modifies protein function
+            functions include signaling, localization, degredation
+            expands functionality
+    model annotates on multi amino acid squence instead of single
+    use related PTM to improve prediction due to similar features
+
+
+
+PLOS 
+Combining machine learning with structure-based protein design to predict and engineer post-translational modifications of proteins
+
+https://doi.org/10.1371/journal.pcbi.1011939
+
+Improved prediction of post-translational modification crosstalk within proteins using DeepPCT
+
+,
+Oxford
+Bioinformatics, Volume 40, Issue 12, December 2024, btae675, https://doi.org/10.1093/bioinformatics/btae675
+Published:
+21 November 2024
+
+
+
+
+notes:
+
+    sequence data more important that structural data for cross talk
+    rao et al paper using logistic regression
+    cross talk more often on surface of protein and in coils
+
+
+
+Lei Deng, Fei Zhu, Yue He, Fanwang Meng,
+Prediction of post-translational modification cross-talk and mutation within proteins via imbalanced learning,
+Expert Systems with Applications,
+Volume 211,
+2023,
+118593,
+ISSN 0957-4174,
+https://doi.org/10.1016/j.eswa.2022.118593.
+(https://www.sciencedirect.com/science/article/pii/S0957417422016475)
+
+
+
+notes:
+
+    PTM often found in transcription factors and histones
+    PTM in areas that have changing sequences, not conserved
+    many papers focus on sequence and secondary structure, add tertiary structure to improve model?
+
+methods used:
+
+-SVM, random forest, RNN,CNN, transformer, elastic network model, gaussian network model, anisotropic network model
+
+Data:
+
+-sequence
+
+-crosstalk
+
+-surface vs inner
+
+    data challenges
+        data imbalance
+            more positive than negative data points
+            randomly generate data by random duplication or removal... bootstrapping?
+            down side, overfitted but more specific and longer to train if generating
+            lose info if removing
+
+
+
+
+Papers that need to be read
+
+Lingkuan Meng, Wai-Sum Chan, Lei Huang, Linjing Liu, Xingjian Chen, Weitong Zhang, Fuzhou Wang, Ke Cheng, Hongyan Sun, Ka-Chun Wong,
+Mini-review: Recent advances in post-translational modification site prediction based on deep learning,
+Computational and Structural Biotechnology Journal,
+Volume 20,
+2022,
+Pages 3522-3532,
+ISSN 2001-0370,
+https://doi.org/10.1016/j.csbj.2022.06.045.
+(https://www.sciencedirect.com/science/article/pii/S2001037022002598)
+
+Yu Yan, Jyun-Yu Jiang, Mingzhou Fu, Ding Wang, Alexander R. Pelletier, Dibakar Sigdel, Dominic C.M. Ng, Wei Wang, Peipei Ping,
+MIND-S is a deep-learning prediction model for elucidating protein post-translational modifications in human diseases,
+Cell Reports Methods,
+Volume 3, Issue 3,
+2023,
+100430,
+ISSN 2667-2375,
+https://doi.org/10.1016/j.crmeth.2023.100430.
+(https://www.sciencedirect.com/science/article/pii/S2667237523000450)
+
+Yuxiao Wang, Qihong Jiao, Jingxuan Wang, Xiaojun Cai, Wei Zhao, Xuefeng Cui,
+Prediction of protein-ligand binding affinity with deep learning,
+Computational and Structural Biotechnology Journal,
+Volume 21,
+2023,
+Pages 5796-5806,
+ISSN 2001-0370,
+https://doi.org/10.1016/j.csbj.2023.11.009.
+(https://www.sciencedirect.com/science/article/pii/S2001037023004245)
+
+Minghui Wang, Xiaowen Cui, Shan Li, Xinhua Yang, Anjun Ma, Yusen Zhang, Bin Yu,
+DeepMal: Accurate prediction of protein malonylation sites by deep neural networks,
+Chemometrics and Intelligent Laboratory Systems,
+Volume 207,
+2020,
+104175,
+ISSN 0169-7439,
+https://doi.org/10.1016/j.chemolab.2020.104175.
+(https://www.sciencedirect.com/science/article/pii/S0169743920304366)
+
+Lili Song, Yaokui Xu, Minghui Wang, Yue Leng,
+PreCar_Deep：A deep learning framework for prediction of protein carbonylation sites based on Borderline-SMOTE strategy,
+Chemometrics and Intelligent Laboratory Systems,
+Volume 218,
+2021,
+104428,
+ISSN 0169-7439,
+https://doi.org/10.1016/j.chemolab.2021.104428.
+(https://www.sciencedirect.com/science/article/pii/S0169743921001969)
+
+Jiahui Guan, Peilin Xie, Danhong Dong, Qianchen Liu, Zhihao Zhao, Yilin Guo, Yilun Zhang, Tzong-Yi Lee, Lantian Yao, Ying-Chih Chiang,
+DeepKlapred: A deep learning framework for identifying protein lysine lactylation sites via multi-view feature fusion,
+International Journal of Biological Macromolecules,
+Volume 283, Part 3,
+2024,
+137668,
+ISSN 0141-8130,
+https://doi.org/10.1016/j.ijbiomac.2024.137668.
+(https://www.sciencedirect.com/science/article/pii/S0141813024084782)
