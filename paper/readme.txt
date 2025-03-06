@@ -6,4 +6,4 @@ folder for reference papers
 
 3. Kim, Doo Nam, et al. "Artificial Intelligence Transforming Post-Translational Modification Research." Bioengineering 12.1 (2024): 26.
 
-4. 
+4.  
