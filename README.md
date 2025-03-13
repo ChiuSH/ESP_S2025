@@ -16,6 +16,8 @@ week 2 (3/6-3/13)
 
        2. try to find databases, papers of CNN learning on PTMs
 
+       3. next meeting 3/13
+       
 Week 3-4 (3/14-3/26)
 
        1. build a CNN model for PTMs
@@ -23,6 +25,8 @@ Week 3-4 (3/14-3/26)
        2. train the model and see the results
        
        3. consider a CNN model with attention head(s)
+
+       4. next meeting 3/20
 
 week 5-6 (3/27-4/9)
        
