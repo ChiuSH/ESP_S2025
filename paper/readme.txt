@@ -6,4 +6,8 @@ folder for reference papers
 
 3. Kim, Doo Nam, et al. "Artificial Intelligence Transforming Post-Translational Modification Research." Bioengineering 12.1 (2024): 26.
 
-4.  
+4. Wang, Duolin, et al. "MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction." Bioinformatics 33.24 (2017): 3909-3916.
+
+5. Meng, Lingkuan, et al. "Mini-review: recent advances in post-translational modification site prediction based on deep learning." Computational and Structural Biotechnology Journal 20 (2022): 3522-3532.
+
+
