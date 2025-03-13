@@ -10,11 +10,19 @@ Week 1 (2/27-3/5)
        
        4. next meeting 3/6
        
-week 2-4 (3/6-3/26)
+week 2 (3/6-3/13)
 
-       1. build the code for machine learning process
+       1. foucs on CNN model 
 
-       2. start to train the model and check the results
+       2. try to find databases, papers of CNN learning on PTMs
+
+Week 3-4 (3/14-3/26)
+
+       1. build a CNN model for PTMs
+       
+       2. train the model and see the results
+       
+       3. consider a CNN model with attention head(s)
 
 week 5-6 (3/27-4/9)
        
