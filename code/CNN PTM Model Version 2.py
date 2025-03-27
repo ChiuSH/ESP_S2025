@@ -1,0 +1,338 @@
+#CREATE TRAINING AND TESTING DATA
+
+import csv
+id_dyrk2 = "DYRK2"
+sequence_dyrk2 = """MLTRKPSAAAPAAYPTGRGGDSAVRQLQASPGLGAGATRSGVGTGPPSPIALPPLRASNAAAAAHTIGGSKHTMNDHLHVGSHAHGQIQVQQLFED
+NSNKRTVLTTQPNGLTTVGKTGLPVVPERQLDSIHRRQGSSTSLKSMEGMGKVKATPMTPEQAMKQYMQKLTAFEHHEIFSYPEIYFLGLNAKKRQGMTGGPNNGGYDDDQGSYVQ
+VPHDHVAYRYEVLKVIGKGSFGQVVKAYDHKVHQHVALKMVRNEKRFHRQAAEEIRILEHLRKQDKDNTMNVIHMLENFTFRNHICMTFELLSMNLYELIKKNKFQGFSLPLVRKF
+AHSILQCLDALHKNRIIHCDLKPENILLKQQGRSGIKVIDFGSSCYEHQRVYTYIQSRFYRAPEVILGARYGMPIDMWSLGCILAELLTGYPLLPGEDEGDQLACMIELLGMPSQK
+LLDASKRAKNFVSSKGYPRYCTVTTLSDGSVVLNGGRSRRGKLRGPPESREWGNALKGCDDPLFLDFLKQCLEWDPAVRMTPGQALRHPWLRRRLPKPPTGEKTSVKRITESTGAI
+TSISKLPPPSSSASKLRTNLAQMTDANGNIQQRTVLPKLVS"""
+label_dyrk2 = """0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"""
+id_dyrk4 = "DYRK4"
+sequence_dyrk4 = """"MPASELKASEIPFHPSIKTQDPKAEEKSPKKQKVTLTAAEALKLFKNQLSPYEQSEILGYAELWFLGLEAKKLDTAPEKFSKTSFDDEHGFYLKV
+LHDHIAYRYEVLETIGKGSFGQVAKCLDHKNNELVALKIIRNKKRFHQQALMELKILEALRKKDKDNTYNVVHMKDFFYFRNHFCITFELLGINLYELMKNNNFQGFSLSIVRRFT
+LSVLKCLQMLSVEKIIHCDLKPENIVLYQKGQASVKVIDFGSSCYEHQKVYTYIQSRFYRSPEVILGHPYDVAIDMWSLGCITAELYTGYPLFPGENEVEQLACIMEVLGLPPAGF
+IQTASRRQTFFDSKGFPKNITNNRGKKRYPDSKDLTMVLKTYDTSFLDFLRRCLVWEPSLRMTPDQALKHAWIHQSRNLKPQPRPQTLRKSNSFFPSETRKDKVQGCHHSSRKADE
+ITKETTEKTKDSPTKHVQHSGDQQDCLQHGADTVQLPQLVDAPKKSEAAVGAEVSMTSPGQSKNFSLKNTNVLPPIV"""
+label_dyrk4 = """0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"""
+id_slc4a7 = "SLC4A7"
+sequence_slc4a7 = """MERFRLEKKLPGPDEEAVVDLGKTSSTVNTKFEKEELESHRAVYIGVHVPFSKESRRRHRHRGHKHHHRRRKDKESDKEDGRESPSYDTPSQRVQ
+FILGTEDDDEEHIPHDLFTEMDELCYRDGEEYEWKETARWLKFEEDVEDGGDRWSKPYVATLSLHSLFELRSCILNGTVMLDMRASTLDEIADMVLDNMIASGQLDESIRENVREA
+LLKRHHHQNEKRFTSRIPLVRSFADIGKKHSDPHLLERNGEGLSASRHSLRTGLSASNLSLRGESPLSLLLGHLLPSSRAGTPAGSRCTTPVPTPQNSPPSSPSISRLTSRSSQES
+QRQAPELLVSPASDDIPTVVIHPPEEDLEAALKGEEQKNEENVDLTPGILASPQSAPGNLDNSKSGEIKGNGSGGSRENSTVDFSKVDMNFMRKIPTGAEASNVLVGEVDFLERPI
+IAFVRLAPAVLLTGLTEVPVPTRFLFLLLGPAGKAPQYHEIGRSIATLMTDEIFHDVAYKAKDRNDLLSGIDEFLDQVTVLPPGEWDPSIRIEPPKSVPSQEKRKIPVFHNGSTPT
+LGETPKEAAHHAGPELQRTGRLFGGLILDIKRKAPFFLSDFKDALSLQCLASILFLYCACMSPVITFGGLLGEATEGRISAIESLFGASLTGIAYSLFAGQPLTILGSTGPVLVFE
+ILYKFCRDYQLSYLSLRTSIGLWTSFLCIVLVATDASSLVCYITRFTEEAFAALICIIFIYEALEKLFDLGETYAFNMHNNLDKLTSYSCVCTEPPNPSNETLAQWKKDNITAHNI
+SWRNLTVSECKKLRGVFLGSACGHHGPYIPDVLFWCVILFFTTFFLSSFLKQFKTKRYFPTKVRSTISDFAVFLTIVIMVTIDYLVGVPSPKLHVPEKFEPTHPERGWIISPLGDN
+PWWTLLIAAIPALLCTILIFMDQQITAVIINRKEHKLKKGAGYHLDLLMVGVMLGVCSVMGLPWFVAATVLSISHVNSLKVESECSAPGEQPKFLGIREQRVTGLMIFILMGLSVF
+MTSVLKFIPMPVLYGVFLYMGVSSLKGIQLFDRIKLFGMPAKHQPDLIYLRYVPLWKVHIFTVIQLTCLVLLWVIKVSAAAVVFPMMVLALVFVRKLMDLCFTKRELSWLDDLMPE
+SKKKKEDDKKKKEKEEAERMLQDDDDTVHLPFEGGSLLQIPVKALKYSPDKPVSVKISFEDEPRKKYVDAETSL"""
+label_slc4a7 = """0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1,
+0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0,
+0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0"""
+with open("code_test_data.csv",'a') as file:
+    writer = csv.writer(file)
+    writer.writerow(["sequence id", "protein sequence", "ptm label"])
+    writer.writerow([id_dyrk2, sequence_dyrk2.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:250], label_dyrk2.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:500]])
+    writer.writerow([id_dyrk4, sequence_dyrk4.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:250], label_dyrk4.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:500]])
+    writer.writerow([id_slc4a7, sequence_slc4a7.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:250], label_slc4a7.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:500]])
+
+id_pdpk1 = "PDPK1"
+sequence_pdpk1 = """MARTTSQLYDAVPIQSSVVLCSCPSPSMVRTQTESSTPPGIPGGSRQGPAMDGTAAEPRPGAGSLQHAQPPPQPRKKRPEDFKFGKILGEGSFSTVVL
+ARELATSREYAIKILEKRHIIKENKVPYVTRERDVMSRLDHPFFVKLYFTFQDDEKLYFGLSYAKNGELLKYIRKIGSFDETCTRFYTAEIVSALEYLHGKGIIHRDLKPENILLNED
+MHIQITDFGTAKVLSPESKQARANSFVGTAQYVSPELLTEKSACKSSDLWALGCIIYQLVAGLPPFRAGNEYLIFQKIIKLEYDFPEKFFPKARDLVEKLLVLDATKRLGCEEMEGYG
+PLKAHPFFESVTWENLHQQTPPKLTAYLPAMSEDDEDCYGNYDNLLSQFGCMQVSSSSSSHSLSASDTGLPQRSGSNIEQYIHDLDSNSFELDLQFSEDEKRLLLEKQAGGNPWHQFV
+ENNLILKMGPVDKRKGLFARRRQLLLTEGPHLYYVDPVNKVLKGEIPWSQELRPEAKNFKTFFVHTPNRTYYLMDPSGNAHKWCRKIQEVWRQRYQSHPDAAVQ"""
+label_pdpk1 = """0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"""
+with open("code_predict.csv","a") as file:
+    writer = csv.writer(file)
+    writer.writerow(["sequence id", "protein sequence", "ptm label"])
+    writer.writerow([id_pdpk1, sequence_pdpk1.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:250], label_pdpk1.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:500]])
+
+
+
+
+
+
+
+
+#SETTING UP DATA LOADER FOR CNN
+
+import pandas as pd
+import torch
+from torch.utils.data import Dataset, DataLoader
+
+class ProteinDataset(Dataset):
+    def __init__(self, csv_file, sequence_length=250):
+        """
+        Args:
+            csv_file (str): Path to the CSV file with protein sequences and modification labels.
+            sequence_length (int): Maximum sequence length (padding shorter sequences).
+        """
+        # Load the CSV data
+        self.data = pd.read_csv(csv_file)
+        self.sequence_length = sequence_length
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        # Get the protein sequence and modification labels
+        sequence = self.data.iloc[idx, 1]  # Protein sequence column
+        labels = self.data.iloc[idx, 2]  # Modification labels column
+        sequence = sequence.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')
+        labels = labels.replace('\r','').replace('\n','').replace('"','').replace("'",'').replace(" ",'')[:-1]
+        print(f"label before processing {labels} and length: {len(labels)}")
+        # Convert the sequence into a list of amino acid indices
+        amino_acid_dict = {'A': 1, 'R': 2, 'N': 3, 'D': 4, 'C': 5, 'E': 6, 'Q': 7, 'G': 8, 'H': 9, 'I': 10, 'L': 11, 'K': 12, 'M': 13, 'F': 14, 'P': 15, 'S': 16, 'T': 17, 'W': 18, 'Y': 19, 'V': 20}
+        
+        # Convert sequence to indices
+        sequence_indices = [amino_acid_dict[aa] for aa in sequence]
+        
+        # Padding if the sequence is shorter than the expected length
+        #if len(sequence_indices) < self.sequence_length:
+            #sequence_indices += [0] * (self.sequence_length - len(sequence_indices))  # Use 0 as padding
+        print(f"sequence indices is: {sequence_indices} and length: {len(sequence_indices)}")
+        # Convert modification labels to a list of integers
+        labels = [int(label) for label in labels.split(',')]
+        
+        # Ensure the label length matches the sequence length
+        #if len(labels) < self.sequence_length:
+            #labels += [0] * (self.sequence_length - len(labels))  # Padding labels if necessary
+        print(f"label indices is: {labels} and length: {len(labels)}")
+        # Convert sequence and labels to tensors
+        sequence_tensor = torch.tensor(sequence_indices).long()  # Long tensor for sequence indices
+        labels_tensor = torch.tensor(labels).float()  # Float tensor for labels (1 or 0)
+
+        # Reshape sequence to match the input shape for the CNN (channels, sequence length)
+        sequence_tensor = sequence_tensor.unsqueeze(0)  # Add a channel dimension (1 channel for 21 amino acids)
+
+        return sequence_tensor, labels_tensor
+
+# Load the data into a DataLoader
+dataset = ProteinDataset(csv_file="code_test_data.csv", sequence_length=250)  # Adjust sequence length based on your data
+train_loader = DataLoader(dataset, batch_size=1, shuffle=True)
+data_pred = ProteinDataset(csv_file="code_predict.csv", sequence_length=250)
+test_loader = DataLoader(data_pred, batch_size=1, shuffle=True)
+# Example: Inspecting the loaded data
+for batch_idx, (sequences, labels) in enumerate(train_loader):
+    print(f"Batch {batch_idx+1}:")
+    print("Sequences:", sequences)
+    print("Labels:", labels)
+
+
+
+
+
+
+
+
+
+#CNN MODEL
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+
+class PhosphoCNN(nn.Module):
+    def __init__(self, sequence_length):
+        super(PhosphoCNN, self).__init__()
+
+        # First 1D convolutional layer: input channels = 21 (one-hot encoding size for each amino acid),
+        # output channels = 64 (number of filters), kernel size = 3 (size of the convolutional window)
+        self.conv1 = nn.Conv1d(in_channels=1, out_channels=64, kernel_size=3, stride=1, padding=1)
+        
+        # Second 1D convolutional layer: output channels = 128
+        self.conv2 = nn.Conv1d(in_channels=64, out_channels=128, kernel_size=3, stride=1, padding=1)
+        
+        # Max pooling layer to downsample the sequence
+        self.pool = nn.MaxPool1d(kernel_size=2, stride=2)
+
+        # Fully connected layer
+        self.fc1 = nn.Linear(64*124 , 75)  # Adjust size depending on the sequence length
+        self.fc2 = nn.Linear(75, 250)  # Output one prediction per amino acid position
+        self.out = nn.Linear(250, 1)
+
+    def forward(self, x):
+        # Apply first convolution, ReLU activation, and max pooling
+        x = self.pool(F.relu(self.conv1(x)))
+        
+        # Apply second convolution, ReLU activation, and max pooling
+        x = self.pool(F.relu(self.conv2(x)))
+        
+        # Flatten the output from 2D to 1D (for fully connected layer)
+        x = x.view(-1, 128 * (x.size(2)))  # Adjust the size based on sequence length
+        
+        # Apply fully connected layers
+        x = F.relu(self.fc1(x))
+        x = torch.sigmoid(self.fc2(x))  # Sigmoid activation for binary classification (phosphorylation or not)
+        
+        return x
+
+
+# Example: Train the model
+
+# Define the model
+sequence_length = 250 # Example sequence length
+model = PhosphoCNN(sequence_length)
+
+# Loss function (Binary Cross-Entropy)
+# Calculate class weights
+class_weights = torch.tensor([20.0])  # Give 10 times more weight to '1' class
+#criterion = nn.BCELoss(pos_weight=class_weights)
+criterion = nn.BCEWithLogitsLoss(pos_weight = class_weights)
+
+# Optimizer (Adam)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+epochs = 2
+# Example training loop
+for epoch in range(epochs):
+    model.train()  # Set the model to training mode
+    
+    for inputs, labels in train_loader:  # Assume `train_loader` provides protein sequences and labels
+        optimizer.zero_grad()
+        inputs=inputs.float()
+        # Forward pass
+        outputs = model(inputs)
+        
+        # Compute loss
+        loss = criterion(outputs, labels)
+        
+        # Backward pass
+        loss.backward()
+        
+        # Update weights
+        optimizer.step()
+
+    print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')
+
+
+
+# Evaluate the model
+model.eval()  # Set the model to evaluation mode
+
+with torch.no_grad():
+    for inputs, labels in test_loader:  # Assume `test_loader` provides test data
+
+        inputs = inputs.float()
+        outputs = model(inputs)
+        predictions = (outputs > 0.5).float()  # Convert probabilities to binary predictions (0 or 1)
+        print(f"predictions:\n{predictions}\ninputs:\n{labels}")
+        # Calculate accuracy or other metrics
+        correct = ((predictions==1)&(labels==1)).sum().item()
+        print(correct)
+        total_ones_in_label = (labels==1).sum().item()
+        false_positives = ((predictions == 1)&(labels==0)).sum().item()
+        #the math below is wrong
+        accuracy = correct/total_ones_in_label if total_ones_in_label > 0 else 0.0
+        print(f'Accuracy: {float(accuracy):.4f}\nfalse positives: {false_positives}\naccuracy/false_positive: {accuracy/false_positives}')
+
+
+#OUTPUT
+#predictions:
+#tensor([[0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+#         1., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 1., 1., 0., 1.,
+#         0., 0., 0., 0., 0., 1., 0., 1., 0., 0., 0., 1., 1., 1., 0., 0., 1., 0.,
+#         1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0.,
+#         1., 0., 1., 1., 1., 0., 0., 0., 0., 1., 1., 1., 0., 1., 1., 1., 0., 0.,
+#         0., 1., 1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0., 1., 0., 0.,
+#         0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 1., 1., 1., 0., 0., 1., 1., 1.,
+#         0., 1., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
+#         0., 0., 1., 0., 1., 1., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0.,
+#         0., 0., 0., 0., 0., 1., 1., 1., 1., 0., 0., 0., 0., 0., 1., 1., 1., 0.,
+#         0., 0., 0., 1., 1., 0., 1., 0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 0.,
+#         1., 1., 0., 1., 1., 1., 0., 1., 0., 0., 1., 0., 0., 0., 1., 1., 0., 1.,
+#         1., 0., 0., 1., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 0., 0.,
+#         0., 0., 0., 1., 1., 0., 1., 1., 1., 0., 0., 0., 1., 0., 1., 0.]])
+#inputs:
+#tensor([[0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+#         1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+#         0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0., 0., 0.]])
+#3
+#Accuracy: 0.4286
+#false positives: 87
+#accuracy/false_positive: 0.0049261083743842365
