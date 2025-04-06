@@ -1,0 +1,7 @@
+Zhong Q, Xiao X, Qiu Y, Xu Z, Chen C, Chong B, Zhao X, Hai S, Li S, An Z, Dai L. Protein posttranslational modifications in health and diseases: Functions, regulatory mechanisms, and therapeutic implications. MedComm (2020). 2023 May 2;4(3):e261. doi: 10.1002/mco2.261. PMID: 37143582; PMCID: PMC10152985.
+
+Yu-Xiang Huang, Rong Liu, Improved prediction of post-translational modification crosstalk within proteins using DeepPCT, Bioinformatics, Volume 40, Issue 12, December 2024, btae675, https://doi.org/10.1093/bioinformatics/btae675
+
+Keenan EK, Zachman DK, Hirschey MD. Discovering the landscape of protein modifications. Mol Cell. 2021 May 6;81(9):1868-1878. doi: 10.1016/j.molcel.2021.03.015. Epub 2021 Apr 1. PMID: 33798408; PMCID: PMC8106652.
+
+Meng L, Chan WS, Huang L, Liu L, Chen X, Zhang W, Wang F, Cheng K, Sun H, Wong KC. Mini-review: Recent advances in post-translational modification site prediction based on deep learning. Comput Struct Biotechnol J. 2022 Jun 30;20:3522-3532. doi: 10.1016/j.csbj.2022.06.045. PMID: 35860402; PMCID: PMC9284371.
