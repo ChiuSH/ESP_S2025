@@ -1,0 +1,291 @@
+%\documentclass[landscape]{sciposter}
+\documentclass[portrait]{sciposter}
+
+\newcommand{\todo}[1]{ \fbox{{\bf TODO:} \color{red} #1}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\graphicspath{ {images/} }
+\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{epsfig}
+%\usepackage{fancybullets}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{tikz,pgfplots}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{latexsym}
+\usepackage{epsf}
+\usepackage{graphicx,color}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+%\usepackage{subcaption}
+\usepackage{mwe}% for example images
+\usepackage{adjustbox}
+\usepackage[poster,most]{tcolorbox} 
+\usepackage{palatino}
+
+\newcommand{\subcaption}[1]% %1 = text
+{\refstepcounter{subfig}%
+\par\vskip\abovecaptionskip
+\centerline{\textbf{(\alph{subfig})} #1}%
+\vskip\belowcaptionskip\par}
+
+% create subfigure environment
+\def\subfigure{\let\oldcaption=\caption
+\let\caption=\subcaption
+\minipage}
+\def\endsubfigure{\endminipage
+\let\caption=\oldcaption}
+
+\renewcommand{\titlesize}{\Huge}
+\renewcommand{\authorsize}{\Large}
+\renewcommand{\instsize}{\large}
+
+
+\sisetup{output-exponent-marker=\textsc{e},
+bracket-negative-numbers,open-bracket={\text{-}}, close-bracket={}}
+
+\newtheorem{Def}{Definition}
+
+\newcommand{\Div}{\mathrm{Div}_{\gamma}}
+\newcommand{\ee}{\mathbf{e}}
+\newcommand{\esigma}{e_{\sigma}}
+\newcommand{\exx}{\mathbf{e}_{\xx}}
+\newcommand{\grad}{\triangledown}
+\newcommand{\ff}{\mathbf{f}}
+\newcommand{\rr}{\mathbf{r}}
+\newcommand{\sdc}{{\,\mathrm{SDC}}}
+\newcommand{\ssigma}{\boldsymbol{\sigma}}
+\newcommand{\tsigma}{\tilde{\sigma}}
+\newcommand{\txx}{\tilde{\xx}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\yy}{\mathbf{y}}
+\newcommand{\BB}{\mathcal{B}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\TT}{\mathcal{T}}
+\newcommand{\Cdb}{\mbox{$\mathbb{C}$}}
+\newcommand{\Rdb}{\mbox{$\mathbb{R}$}}
+\newcommand{\Ree}{\mbox{$\mathcal{R}e$\,}}
+\newcommand{\Imm}{\mbox{$\mathcal{I}m$\,}}
+\newcommand{\UU}{\mathbf{U}}
+\newcommand{\bd}{{\partial}}
+\newcommand{\bigO}{{\mathcal{O}}}
+\newcommand{\cc}{{\mathbf{c}}}
+\newcommand{\DD}{{\mathcal{D}}}
+\newcommand{\eeta}{{\boldsymbol\eta}}
+\newcommand{\II}{{\mathbf{I}}}
+\newcommand{\iin}{\mathrm{in}}
+\newcommand{\llambda}{{\boldsymbol\lambda}}
+\newcommand{\nn}{{\mathbf{n}}}
+\newcommand{\NN}{{\mathcal{N}}}
+\newcommand{\out}{\mathrm{out}}
+\newcommand{\RR}{{\mathbb{R}}}
+\renewcommand{\ss}{{\mathbf{s}}}
+\newcommand{\tar}{\mathrm{tar}}
+\newcommand{\vv}{{\mathbf{v}}}
+\newcommand{\xxi}{{\boldsymbol{\xi}}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\fon}[1]{\fontfamily{#1}\selectfont}
+
+%\usetikzlibrary{spy,backgrounds,decorations}
+%\usetikzlibrary{spy}
+
+%\usepgfplotslibrary{external}
+%\tikzexternalize
+
+\definecolor{SectionCol}{RGB}{255,255,255}
+% background color of boxes
+
+\definecolor{BoxCol}{RGB}{0,127,163}
+% uncomment for dark blue \section text 
+
+\title{\textcolor{SectionCol}{}}
+
+% Note: only give author names, not institute
+\author{Shang-Huan Chiu$^a$, \normalfont{M. Nicholas. J. Moore $^b$, Bryan D. Quaife $^c$}}
+ 
+% insert correct institute name
+\institute{ $^a$Department of Scientific Computing, Florida State University \\
+ $^b$Department of Mathematics and Geophysical Fluid Dynamics Institute, Florida State University\\
+ $^c$Department of Scientific Computing and Geophysical Fluid Dynamics Institute, Florida State University}
+%\email{quaife@ices.utexas.edu}  % shows author email address below institute
+
+%\date is unused by the current \maketitle
+
+
+% The following commands can be used to alter the default logo settings
+%\leftlogo[0.9]{./figs/DSC-garnet-trans-bg-poster}{  % defines logo to left of title (with scale factor)
+\rightlogo[1]{./figs/Citytech_Shield_Color}  % same but on right
+
+% NOTE: This will require presence of files logoWenI.eps and RuGlogo.eps, 
+% or other supported format in the current directory  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+
+\vspace{-100 pt}
+
+\begin{document}
+
+%define conference poster is presented at (appears as footer)
+
+%\conference{Mathematical Foundations for Fast Multi-resolution
+%Interactions \& Large Data Analysis}
+
+%\LEFTSIDEfootlogo  
+% Uncomment to put footer logo on left side, and 
+% conference name on right side of footer
+
+% Some examples of caption control (remove % to check result)
+
+%\renewcommand{\algorithmname}{Algoritme} % for Dutch
+%\renewcommand{\mastercapstartstyle}[1]{\textit{\textbf{#1}}}
+%\renewcommand{\algcapstartstyle}[1]{\textsc{\textbf{#1}}}
+%\renewcommand{\algcapbodystyle}{\bfseries}
+%\renewcommand{\thealgorithm}{\Roman{algorithm}}
+
+\maketitle
+
+%%% Begin of Multicols-Enviroment
+%\begin{multicols}{1}
+%\vspace{-80 pt}
+%%% Abstract
+\begin{abstract}
+Post-translational modifications (PTMs) refer to the attachment of molecules (e.g., phosphates, sulfates, glycans, ubiquitins, etc.) to amino acids in proteins. These modifications change the properties of the protein and play a large role in protein function, regulation, and cell signaling. PTMs also play a role in disease (e.g., Alzheimer's disease via Tau hyperphosphorylation, Huntington's disease via hypopalmitoylation of huntingtin protein, and type 2 diabetes mellitus via malonylation of enzymes involved in glucose and lipid metabolism); therefore, understanding PTMs and locating these modifications can provide valuable targets for therapeutics. However, discovery of PTMs and their locations on proteins is very time consuming, laborious, and expensive. Computational methods, such as machine learning, are required to  alleviate these challenges. Logistic regression, support vector machines, random forests, and k-nearest neighbors are some traditional machine learning methods that were used with good success in predicting PTMs. As machine learning and AI have advanced tremendously in the last few years, advanced machine learning techniques such as Convolutional Neural networks(CNNs), Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTM), Transformer Models, and Graph Neural Networks (GNNs) have been used and outperformed traditional machine learning methods. This work will explore the use of a CNN to predict phosphorylation sites using the Pytorch package in Python and data from UniProt. Structural data, attention heads, PTM crosstalk, and bootstrapping will be considered in future work to improve the model.
+\end{abstract} 
+
+%\begin{adjustbox}{valign=t,minipage={.5\textwidth}}
+%\begin{minipage}{0.4\linewidth}
+%\flushleft
+%%%% Introduction
+\begin{multicols}{1}
+\section*{Introduction}
+
+\begin{figure}
+	\centering
+		
+		\caption{$\Omega$ is the fluid domain with boundary $\Gamma$.  A no-slip boundary condition is imposed on each body $\gamma_\ell$.  On the outer geometry $\Gamma$, a Hagen-Poiseuille flow is imposed. The bodies are constrained to the middle third of the channel that is located between the dashed lines. The bodies erode at a rate that is proportional to the shear stress.}
+\end{figure}
+
+\begin{figure}[H]
+
+\caption{\label{fig:Eroding50vort} The erosion of 50 bodies. The
+individual snapshots are evenly spaced in time. The color is the vorticity of the fluid
+whose magnitude is proportional to the rate of erosion.}
+\end{figure}
+%\end{minipage}%
+%\begin{flushright}
+%\end{adjustbox}
+%\hfill
+%\begin{adjustbox}{valign=t,minipage={.45\textwidth}}
+%\begin{minipage}{0.55\linewidth}
+%\begin{flushright}
+\vspace{-20pt}
+\section*{Numerical Challenge}
+\begin{figure}[h]
+\centering
+        \begin{subfigure}[b]{0.46\textwidth}
+
+                \caption{}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.55\textwidth}
+
+                \caption{ }
+        \end{subfigure}
+        \begin{subfigure}[b]{0.48\textwidth}
+            \center
+
+                \caption{}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.48\textwidth}
+       \centering
+
+                \caption{}
+        \end{subfigure}
+        \caption{The difference of the velocities using the two quadrature methods. Since the flow vanishes on the bodies, the flow on the red dashed line should be close to zero. (a) Difference of the velocities in the x-direction; (b) Difference of the velocities in the y-direction; (c)The velocities in the x-direction on the red circle; (d)The velocities in the y-direction on the red circle.}
+\end{figure}
+
+
+\section*{Numerical Examples}
+\begin{figure}[h]
+     \begin{center}
+
+ \caption{Tracers move in the fluid from left to right. Since we use highly accurate numerical methods, the tracers can be very close to the bodies.}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.33\textwidth}
+
+\caption{}
+\end{subfigure}%
+\begin{subfigure}[b]{0.33\textwidth}
+
+\caption{}
+\end{subfigure}%
+\begin{subfigure}[b]{0.33\textwidth}
+
+\caption{}
+\end{subfigure}
+\caption{\label{fig:Eroding100Transport} (a): The tortuosity (mean distance traveled) of an
+eroding geometry initialized with 100 bodies.  
+
+(b): The dispersion (spreading) of the same eroding geometry.  
+
+(c): The Delaunay triangulation of the porous media.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{100 bodies, 258 gaps}
+\end{subfigure}%
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{100 gaps, 258 gaps}
+\end{subfigure}%
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{97 bodies, 249 gaps}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{92 bodies, 234 gaps}
+\end{subfigure}%
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{75 bodies, 189 gaps}
+\end{subfigure}%
+\begin{subfigure}[b]{0.3\textwidth}
+
+\caption{34 bodies, 74 gaps}
+\end{subfigure}
+\caption{\label{fig:Eroding100gap_hist} The distribution of the gaps 
+of 100 eroding bodies at six porosities. The black curves are
+Weibull distributions whose first and second moments agree with the
+data. 
+
+}
+\end{figure}
+
+
+\vspace{-25pt}
+\bibliographystyle{plain}
+\begin{thebibliography}{1}
+\bibitem{qua:You2019}
+Bryan D. Quaife, and M. Nicholas J. Moore.
+\newblock {A boundary-integral framework to simulate viscous erosion of a porous medium}
+\newblock {\em Journal of Computational Physics}, 375:1-21
+\bibitem{Blo:Dav2013}
+Alex Barnett, Bowei Wu, and Shravan Veerapaneni.
+\newblock{Spectrally-accurate quadratures for evaluation of layer potentials close to the boundary for the 2D Stokes and Laplace equations.}
+\newblock{\em SIAM Journal on Scientific Computing}, 37(4):B519-B542
+\end{thebibliography}
+%\end{adjustbox}
+\end{multicols}
+\end{document}
